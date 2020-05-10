@@ -1,11 +1,9 @@
 <template>
-  <div class="rhymesaurus">
+  <div class="adjectivesaurus">
     <form v-on:submit.prevent="findWords">
-      
-      <p>
-        Find rhymes for
-        <input type="text" v-model="rhyme" /> related to
-        <input type="text" v-model="phrase" />
+            <p>
+        Find adjectives for a given noun
+        <input type="text" v-model="noun" />
         <button type="submit">Search</button>
       </p>
     </form>
@@ -40,16 +38,15 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "axios"; 
 
 export default {
-  name: "Rhymesaurus",
+  name: "Adjectivesaurus",
   data() {
     return {
       results: null,
       errors: [],
-      phrase: "",
-      rhyme: ""
+      noun: ""
     };
   }, 
   methods: {
@@ -57,8 +54,7 @@ export default {
       axios
         .get("https://api.datamuse.com/words", {
           params: {
-            ml: this.phrase,
-            rel_rhy: this.rhyme
+            rel_jjb: this.noun
           }
         })
         .then(response => {
@@ -74,7 +70,7 @@ export default {
 </script>
 
 <style scoped>
-.rhymesaurus {
+.adjectivesaurus {
   font-size: 1.4rem;
 }
 input[type="text"] {
